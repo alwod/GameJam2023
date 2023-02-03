@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float movementSpeed;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private float movementSpeed;
 
     // Update is called once per frame
     void Update()
