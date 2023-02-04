@@ -20,6 +20,6 @@ public class EnemyTree : MonoBehaviour
         Vector3 lookAt = Player.transform.position;
         lookAt.y = transform.position.y;
         transform.LookAt(lookAt);
-        Rigidbody.AddRelativeForce(Vector3.forward * speed, ForceMode.Force);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }
