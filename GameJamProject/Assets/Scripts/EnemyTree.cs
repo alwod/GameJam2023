@@ -8,9 +8,10 @@ using Object = UnityEngine.Object;
 public class EnemyTree : MonoBehaviour
 {
     public int speed = 5;
-    public int maxHealth = 500;
+    public int maxHealth = 5000;
     private PlayerController Player;
     private Rigidbody Rigidbody;
+    private GameManager GameManager;
 
     public int Health // Enemy's current health.
     {
@@ -31,6 +32,7 @@ public class EnemyTree : MonoBehaviour
     {
         Player = GameObject.FindObjectOfType<PlayerController> ();
         Rigidbody = GetComponent<Rigidbody>();
+        GameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     void OnEnable()
@@ -98,7 +100,7 @@ public class EnemyTree : MonoBehaviour
         {
             // Incoming fire attacks increase the tick count, making the enemy take damage over time.
             case "Flame":
-                FlameTickCount+= 10;
+                FlameTickCount+= 2;
                 break;
         }
 
@@ -115,5 +117,6 @@ public class EnemyTree : MonoBehaviour
     {
         Debug.Log("Oh no. I am dying. Help.");
         gameObject.SetActive(false);
+        GameManager.defeatedEnemies++;
     }
 }
