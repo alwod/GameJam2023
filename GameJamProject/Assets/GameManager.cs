@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     private GameObject[] enemyPool;
 
     private byte poolPointer;
+
+    [SerializeField] private GameObject DMGText;
 
     private void Awake()
     {
@@ -55,5 +58,20 @@ public class GameManager : MonoBehaviour
     public GameObject[] GetEnemies()
     {
         return enemyPool;
+    }
+
+    public void InstantiateDamageNumbers(int incDamage, GameObject enemy)
+    {
+        GameObject damageText = Instantiate(DMGText,
+            Vector3.one,
+            Quaternion.identity);
+
+        // set damage text position to above the enemy in screen space.
+        //damageText.transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position);
+        damageText.GetComponent<TextMeshPro>().transform.position =
+            Camera.main.WorldToScreenPoint(enemy.transform.position);
+
+        damageText.GetComponent<TextMeshPro>().SetText(incDamage.ToString());
+
     }
 }
