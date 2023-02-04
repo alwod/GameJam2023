@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Flamethrower : MonoBehaviour
@@ -27,6 +28,13 @@ public class Flamethrower : MonoBehaviour
         _spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
 
         fireTime = 0f;
+
+        GameObject[] enemies = GameObject.Find("_GAME MANAGER").GetComponent<GameManager>().GetEnemies();
+
+        foreach (GameObject enemy in enemies)
+        {
+            ps.trigger.AddCollider(enemy.GetComponent<BoxCollider>());
+        }
     }
 
     private void Update()
@@ -62,21 +70,6 @@ public class Flamethrower : MonoBehaviour
             ps.Stop();
             fireTime = 0f;
         }
-
-        // If flamethrower has been firing for over half a second, enable collision boxes.
-        if (fireTime > 0.5f)
-        {
-            foreach (BoxCollider bc in GetComponents<BoxCollider>())
-            {
-                bc.enabled = true;
-            }
-        }
-
-        // Otherwise, start co-routine which disables them after a short delay to account for lingering flames.
-        else if (GetComponent<BoxCollider>().enabled)
-        {
-            StartCoroutine(bcDisableDelayed(0.5f));
-        }
     }
 
     /// <summary>
@@ -100,18 +93,26 @@ public class Flamethrower : MonoBehaviour
         return validParticles.ToArray();
     }
     
-    
-    /// <summary>
-    /// Called per frame per collider within the flamethrower's triggers.
-    /// </summary>
-    /// <param name="other">Collider object</param>
-    private void OnTriggerStay(Collider other)
+
+    private void OnParticleTrigger()
     {
-        switch (other.tag)
+        Debug.Log("Pog!");
+        List<ParticleSystem.Particle> enteredParts = new List<ParticleSystem.Particle>();
+
+        int enterNo = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enteredParts);
+
+        GameObject[] enemies = GameObject.Find("_GAME MANAGER").GetComponent<GameManager>().GetActiveEnemies();
+
+        foreach (ParticleSystem.Particle part in enteredParts)
         {
-            case "Enemy":
-                other.GetComponent<EnemyTree>().TakeDamage(2, "Flame");
-                break;
+            foreach (GameObject enemy in enemies)
+            {
+                Collider col = enemy.GetComponent<Collider>();
+                if (col.bounds.Contains(part.position))
+                {
+                    enemy.GetComponent<EnemyTree>().TakeDamage(2, "Flame");
+                }
+            }
         }
     }
 
