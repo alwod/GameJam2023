@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.041843
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.047134
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33,11 +33,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -61,31 +61,39 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 086156113ac9fcc409345f16790736da, type: 2}
     - target: {fileID: 919132149155446097, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_Name
-      value: default
+      value: Normal Tree
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.59
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
@@ -107,3 +115,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12.889263, y: 19.53749, z: 12.19376}
   m_Center: {x: -0.37942824, y: 3.640923, z: -0.07767169}
+--- !u!208 &3557918506030264013
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822446984384355004}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7.0750003, y: 9.769, z: 6.097}
+  m_MoveThreshold: 0
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.25100002, y: 3.6410003, z: -0.078}
+  m_TimeToStationary: 0
