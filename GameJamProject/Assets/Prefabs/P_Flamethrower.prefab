@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1279623219404341632}
   - component: {fileID: 3233379626976012551}
   - component: {fileID: 3233379626976012550}
+  - component: {fileID: 167984426}
   m_Layer: 3
   m_Name: P_Flamethrower
   m_TagString: Untagged
@@ -44,7 +45,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3233379626976012544}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 0.9
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -118,7 +119,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.33
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -171,8 +172,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 24
-      minScalar: 12
+      scalar: 10
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -746,7 +747,7 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0
+    randomDirectionAmount: 1
     sphericalDirectionAmount: 0
     randomPositionAmount: 1
     radius:
@@ -986,36 +987,36 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.050476074
-          inSlope: 0.33607
-          outSlope: 0.33607
+          value: 0.022827148
+          inSlope: 0.11473174
+          outSlope: 0.11473174
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.26829344
-          value: 0.14064145
-          inSlope: 0.41435146
-          outSlope: 0.41435146
+          time: 0.2895413
+          value: 0.056046724
+          inSlope: 0.14811927
+          outSlope: 0.14811927
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.5271548
-          value: 0.26816508
-          inSlope: 0.4799946
-          outSlope: 0.4799946
+          time: 0.4998263
+          value: 0.09421489
+          inSlope: 0.11901225
+          outSlope: 0.11901225
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.48915225
-          inSlope: 0.46735626
-          outSlope: 0.46735626
+          value: 0.12248355
+          inSlope: 0.056517698
+          outSlope: 0.056517698
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -1987,7 +1988,7 @@ ParticleSystem:
     radial:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2040,7 +2041,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.8
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3634,9 +3635,9 @@ ParticleSystem:
   CollisionModule:
     enabled: 0
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
-    colliderForce: 0
+    colliderForce: 10
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
@@ -3806,14 +3807,14 @@ ParticleSystem:
     collidesWith:
       serializedVersion: 2
       m_Bits: 4294967295
-    maxCollisionShapes: 256
+    maxCollisionShapes: 516
     quality: 0
     voxelSize: 0.5
     collisionMessages: 0
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
     inside: 1
     outside: 0
@@ -4019,7 +4020,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4081,7 +4082,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4804,7 +4805,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
-  m_SortMode: 0
+  m_SortMode: 3
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -4840,11 +4841,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3233379626976012544}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 3.8238173, z: 0.8660927}
-  m_Center: {x: 0, y: -0.087491274, z: -0.45954227}
+  m_Size: {x: 7.295377, y: 2.5, z: 11.999999}
+  m_Center: {x: 0.64768934, y: -1.2516668, z: 11.435002}
 --- !u!114 &3233379626976012550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4858,3 +4859,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flameMaxRange: 0
+--- !u!65 &167984426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233379626976012544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4836967, y: 0.87658215, z: 5.999517}
+  m_Center: {x: 0.022545457, y: -1.1960773, z: 2.4997587}

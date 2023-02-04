@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Object = UnityEngine.Object;
 
 public class EnemyTree : MonoBehaviour
 {
     public int speed = 5;
+    public int maxHealth = 500;
     private PlayerController Player;
     private Rigidbody Rigidbody;
 
@@ -33,7 +35,7 @@ public class EnemyTree : MonoBehaviour
 
     void OnEnable()
     {
-        Health = 10000;
+        Health = maxHealth;
         FlameTickCount = 0;
         flameTickDamageDelay = 0;
     }
@@ -70,6 +72,7 @@ public class EnemyTree : MonoBehaviour
                 FlameTickCount -= FlameTickCount / 4;
             }
 
+            if (Health <= 0) { gameObject.SetActive(false); }
             flameTickDamageDelay = 1f;
             Debug.Log("ON FIRE: " + Health + "\nTICKS REMAINING:" + FlameTickCount);
         }
@@ -85,13 +88,13 @@ public class EnemyTree : MonoBehaviour
     public void TakeDamage(int damage, string debuff = "")
     {
         Health -= damage;
-
-        if (Health <= 0)
+        
+        if (Health <= 0 && gameObject.activeSelf)
         {
-            gameObject.SetActive(false);
+            OnDeath();
         }
 
-            switch (debuff)
+        switch (debuff)
         {
             // Incoming fire attacks increase the tick count, making the enemy take damage over time.
             case "Flame":
@@ -100,10 +103,17 @@ public class EnemyTree : MonoBehaviour
         }
 
         Debug.Log(Health);
+
     }
 
     void LateUpdate()
     {
         transform.rotation = Camera.main.transform.rotation;
+    }
+
+    void OnDeath()
+    {
+        Debug.Log("Oh no. I am dying. Help.");
+        gameObject.SetActive(false);
     }
 }
