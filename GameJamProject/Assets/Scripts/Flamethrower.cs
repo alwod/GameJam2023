@@ -63,13 +63,19 @@ public class Flamethrower : MonoBehaviour
             fireTime = 0f;
         }
 
+        // If flamethrower has been firing for over half a second, enable collision boxes.
         if (fireTime > 0.5f)
         {
-            GetComponent<BoxCollider>().enabled = true;
+            foreach (BoxCollider bc in GetComponents<BoxCollider>())
+            {
+                bc.enabled = true;
+            }
         }
-        else
+
+        // Otherwise, start co-routine which disables them after a short delay to account for lingering flames.
+        else if (GetComponent<BoxCollider>().enabled)
         {
-            GetComponent<BoxCollider>().enabled = false;
+            StartCoroutine(bcDisableDelayed(0.5f));
         }
     }
 
@@ -93,8 +99,13 @@ public class Flamethrower : MonoBehaviour
         }
         return validParticles.ToArray();
     }
-
-    private void OnTriggerEnter(Collider other)
+    
+    
+    /// <summary>
+    /// Called per frame per collider within the flamethrower's triggers.
+    /// </summary>
+    /// <param name="other">Collider object</param>
+    private void OnTriggerStay(Collider other)
     {
         switch (other.tag)
         {
@@ -102,5 +113,20 @@ public class Flamethrower : MonoBehaviour
                 Debug.Log("BURN");
                 break;
         }
+    }
+
+    /// <summary>
+    /// After a delay, disable all the box colliders. Used to disable collider after lingering flames have dissipated.
+    /// </summary>
+    /// <param name="delay">Time in seconds to delay the disable.</param>
+    IEnumerator bcDisableDelayed(float delay = 1f)
+    {
+        yield return new WaitForSeconds(delay);
+        foreach (BoxCollider bc in GetComponents<BoxCollider>())
+        {
+            bc.enabled = false;
+        }
+        
+        yield return null;
     }
 }
