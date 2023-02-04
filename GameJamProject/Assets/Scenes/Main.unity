@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: press button to skip
+  m_text: press enter to skip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -393,27 +393,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193445276}
   m_CullTransparentMesh: 1
---- !u!1 &262526118 stripped
+--- !u!1 &299877320 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da634c891ff9f4443ac040840b1a24c5, type: 3}
-  m_PrefabInstance: {fileID: 1601536922}
+  m_CorrespondingSourceObject: {fileID: 7532305516227142648, guid: 4dd94a50aff456b478ace3168dff853b, type: 3}
+  m_PrefabInstance: {fileID: 2117747766}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &262526120
+--- !u!114 &299877327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262526118}
+  m_GameObject: {fileID: 299877320}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a64bcdaa0ae5e6498802c9789b76807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Mr Tree
-    sentences:
-    - Hello, I'm a tree!
+    sprite:
+    - {fileID: 21300000, guid: 239276107e0005d409cf49f746d979d2, type: 3}
+    - {fileID: 21300000, guid: af510b1f861328f49b02f78181bd1c26, type: 3}
+    - {fileID: 21300000, guid: 239276107e0005d409cf49f746d979d2, type: 3}
+    data: {fileID: 4900000, guid: 1d97a70f49db4baf880d506bb1057303, type: 3}
   player: {fileID: 942746807}
 --- !u!1001 &321526355
 PrefabInstance:
@@ -1049,7 +1051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &895170819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1581,7 +1583,7 @@ GameObject:
   - component: {fileID: 1149719381}
   - component: {fileID: 1149719380}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2225,6 +2227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1202704706}
   dialogueText: {fileID: 68923641}
+  canvas: {fileID: 895170818}
+  portrait: {fileID: 1149719380}
 --- !u!4 &1982496709
 Transform:
   m_ObjectHideFlags: 0
@@ -2363,6 +2367,10 @@ PrefabInstance:
     - target: {fileID: 7532305516227142648, guid: 4dd94a50aff456b478ace3168dff853b, type: 3}
       propertyPath: m_Name
       value: Enemy Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 7532305516227142648, guid: 4dd94a50aff456b478ace3168dff853b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dd94a50aff456b478ace3168dff853b, type: 3}

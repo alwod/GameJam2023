@@ -10,8 +10,8 @@ public class DialogueManager : MonoBehaviour
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-
-    //public Animator animator;
+    public GameObject canvas;
+    public Image portrait;
 
     // Start is called before the first frame update
     void Start()
@@ -19,45 +19,34 @@ public class DialogueManager : MonoBehaviour
         _sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public IEnumerator StartDialogue(Dialogue dialogue)
     {
-        nameText.text = dialogue.name;
+        var fullDataText = dialogue.data.text;
+        var dataByLine = fullDataText.Split("\n");
         
-        _sentences.Clear();
-
-        foreach (var sentence in dialogue.sentences)
+        canvas.SetActive(true);
+        int imageIndex = 0;
+        foreach (var line in dataByLine)
         {
-           _sentences.Enqueue(sentence); 
-        }
+            var seperatedData = line.Split("%");
         
-        DisplayNextSentence();
-    }
+            //var portraitPath = seperatedData[0];
+            var characterName = seperatedData[0];
+            var newdialogueText = seperatedData[1];
 
-    public void DisplayNextSentence()
-    {
-        if (_sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
+            //portrait.sprite.
+            nameText.text = characterName;
+            portrait.sprite = dialogue.sprite[imageIndex];
+            imageIndex++;
+
+            dialogueText.text = "";
+            foreach (var character in newdialogueText.ToCharArray())
+            {
+                dialogueText.text += character;
+                yield return null;
+            }
+            yield return new WaitForSeconds(2);
         }
-
-        var sentence = _sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
-    }
-
-    private IEnumerator TypeSentence(string sentence)
-    {
-        dialogueText.text = "";
-        foreach (var character in sentence.ToCharArray())
-        {
-            dialogueText.text += character;
-            yield return null;
-        }
-    }
-
-    private void EndDialogue()
-    {
-        
+        canvas.SetActive(false);
     }
 }
