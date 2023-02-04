@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         // suspend execution for 5 seconds
         yield return new WaitForSeconds(1);
+        _animator.ResetTrigger("Hurt");
         damageCooldown = false;
     }
     private void OnTriggerStay(Collider other)
@@ -87,12 +88,13 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy") && !damageCooldown)
         {
             Debug.Log("Ouch, I'm being hurt.");
+            _animator.SetTrigger("Hurt");
             Health -= 10;
             damageCooldown = true;
             StartCoroutine(DisableDamage());
             setHealth();
         }
-
+        
         if (Health <= 0)
         {
             OnDefeat();
