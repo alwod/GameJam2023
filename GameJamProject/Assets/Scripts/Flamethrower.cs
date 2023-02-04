@@ -41,7 +41,7 @@ public class Flamethrower : MonoBehaviour
         // slow down particles over time
         for (int i = 0; i < validParticles.Length; i++)
         {
-            validParticles[i].velocity *= 0.75f;
+            validParticles[i].velocity *= 0.5f;
         }
 
         isFiring = Input.GetKey(KeyCode.Space); // If using primary fire key, set firing to true, otherwise false. 
