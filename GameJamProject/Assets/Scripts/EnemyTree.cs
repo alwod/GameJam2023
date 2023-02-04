@@ -27,7 +27,10 @@ public class EnemyTree : MonoBehaviour
     {
         Player = GameObject.FindObjectOfType<PlayerController> ();
         Rigidbody = GetComponent<Rigidbody>();
+    }
 
+    void OnEnable()
+    {
         Health = 10000;
         FlameTickCount = 0;
         flameTickDamageDelay = 0;
@@ -73,7 +76,12 @@ public class EnemyTree : MonoBehaviour
     {
         Health -= damage;
 
-        switch (debuff)
+        if (Health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
+            switch (debuff)
         {
             // Incoming fire attacks increase the tick count, making the enemy take damage over time.
             case "Flame":
