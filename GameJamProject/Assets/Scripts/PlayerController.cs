@@ -15,11 +15,11 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _rigidbody.isKinematic = true;
+        // _rigidbody.isKinematic = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         var movement = Vector3.zero;
 
@@ -50,6 +50,6 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.flipX = false;
         }
 
-        transform.position += movement * speed;
+        _rigidbody.MovePosition(transform.position + movement * speed);
     }
 }
