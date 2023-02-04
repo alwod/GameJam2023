@@ -38,12 +38,6 @@ public class Flamethrower : MonoBehaviour
 
         ps.SetParticles(validParticles, validParticles.Length); // Set particle system to use particles in arrays, aka omit particles that were outside the range.
 
-        // slow down particles over time
-        for (int i = 0; i < validParticles.Length; i++)
-        {
-            validParticles[i].velocity *= 0.5f;
-        }
-
         isFiring = Input.GetKey(KeyCode.Space); // If using primary fire key, set firing to true, otherwise false. 
 
         // Shoot flamethrower if firing.
