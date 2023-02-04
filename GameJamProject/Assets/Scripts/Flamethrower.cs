@@ -25,8 +25,24 @@ public class Flamethrower : MonoBehaviour
         int numParticlesAlive = ps.GetParticles(partSystem);  // Get number of currently active particles.
         
         ParticleSystem.Particle[] validParticles = GetInRangeParticles(partSystem);
-        
+
+        var bounds = GetComponent<ParticleSystemRenderer>().bounds; // Get bounds of the particle system.
+        foreach (var particle in validParticles)
+        {
+            bounds.Encapsulate(particle.position);
+        }
+
+        // set box collider to bounds
+        GetComponent<BoxCollider>().center = bounds.center - transform.position;
+        GetComponent<BoxCollider>().size = bounds.size * 0.6f;
+
         ps.SetParticles(validParticles, validParticles.Length); // Set particle system to use particles in arrays, aka omit particles that were outside the range.
+
+        // slow down particles over time
+        for (int i = 0; i < validParticles.Length; i++)
+        {
+            validParticles[i].velocity *= 0.75f;
+        }
 
         isFiring = Input.GetKey(KeyCode.Space); // If using primary fire key, set firing to true, otherwise false. 
 
