@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 
     public int maximumHealth = 100;
+    public GameObject currentHealthObject;
 
     [SerializeField] private int Health;
     [SerializeField]
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private bool damageCooldown;
+    private TextMeshProUGUI currentHealthUI;
 
     private void Start()
     {
@@ -24,6 +27,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         Health = maximumHealth;
         damageCooldown = false;
+        currentHealthUI = currentHealthObject.GetComponent<TextMeshProUGUI>();
+        setHealth();
         // _rigidbody.isKinematic = true;
     }
 
@@ -85,6 +90,7 @@ public class PlayerController : MonoBehaviour
             Health -= 10;
             damageCooldown = true;
             StartCoroutine(DisableDamage());
+            setHealth();
         }
 
         if (Health <= 0)
@@ -97,5 +103,10 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Game over mate, you lost");
         gameObject.SetActive(false);
+    }
+
+    void setHealth()
+    {
+        currentHealthUI.SetText("Health: " + Health + "/" + maximumHealth);
     }
 }

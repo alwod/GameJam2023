@@ -9,11 +9,15 @@ public class EnemyTree : MonoBehaviour
 {
     public int speed = 5;
     public int maxHealth = 5000;
+    public GameObject fire;
+    
+    
     private PlayerController Player;
     private Rigidbody Rigidbody;
     private GameManager GameManager;
     private NavMeshAgent meshAgent;
     private SpriteRenderer SpriteRenderer;
+    private bool onFire;
 
     public int Health // Enemy's current health.
     {
@@ -37,6 +41,7 @@ public class EnemyTree : MonoBehaviour
         GameManager = GameObject.FindObjectOfType<GameManager>();
         meshAgent = GetComponent<NavMeshAgent>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
+        onFire = false;
     }
 
     void OnEnable()
@@ -64,7 +69,6 @@ public class EnemyTree : MonoBehaviour
         if (playerDirection.x < 0) SpriteRenderer.flipX = true;
         else SpriteRenderer.flipX = false;
     }
-
     void Update()
     {
         // If enemy is still on fire and the damage delay has ended...
@@ -82,10 +86,26 @@ public class EnemyTree : MonoBehaviour
                 FlameTickCount -= FlameTickCount / 4;
             }
 
-            if (Health <= 0) { gameObject.SetActive(false); }
+            if (Health <= 0)
+            {
+                OnDeath();
+            }
+
             flameTickDamageDelay = 1f;
             Debug.Log("ON FIRE: " + Health + "\nTICKS REMAINING:" + FlameTickCount);
         }
+
+        
+        //check if there are fire ticks. If there are, turn on flame animation
+        if (FlameTickCount > 0) onFire = true;
+        else onFire = false;
+        
+        if (onFire)
+        {
+            if(!fire.gameObject.activeSelf) fire.gameObject.SetActive(true);
+        }
+        else if(fire.gameObject.activeSelf) fire.gameObject.SetActive(false);
+
 
         flameTickDamageDelay -= Time.deltaTime;
     }
