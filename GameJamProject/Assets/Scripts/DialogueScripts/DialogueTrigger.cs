@@ -19,7 +19,7 @@ public class DialogueTrigger : MonoBehaviour
 
         _delayTime = _delayTime - Time.deltaTime;
         
-        if (distance <= 10 && Input.GetKey(KeyCode.Return) && _delayTime <= 0)
+        if (distance <= 5 && Input.GetKey(KeyCode.Return) && _delayTime <= 0)
         {
             _delayTime = 0.2f;
             TriggerDialogue();
