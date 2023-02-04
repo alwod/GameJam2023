@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueText.text += character;
                 yield return null;
             }
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
         }
         canvas.SetActive(false);
     }
