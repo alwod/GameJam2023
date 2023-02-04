@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-    public GameObject canvas;
+    public GameObject dialogueBox;
     public Image portrait;
 
     // Start is called before the first frame update
@@ -23,8 +23,8 @@ public class DialogueManager : MonoBehaviour
     {
         var fullDataText = dialogue.data.text;
         var dataByLine = fullDataText.Split("\n");
-        
-        canvas.SetActive(true);
+
+        dialogueBox.SetActive(true);
         int imageIndex = 0;
         foreach (var line in dataByLine)
         {
@@ -47,6 +47,7 @@ public class DialogueManager : MonoBehaviour
             }
             yield return new WaitForSeconds(3);
         }
-        canvas.SetActive(false);
+        dialogueBox.SetActive(false);
+        dialogueBox.tag = "Finish";
     }
 }
