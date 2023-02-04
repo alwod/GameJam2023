@@ -110,7 +110,7 @@ public class Flamethrower : MonoBehaviour
         switch (other.tag)
         {
             case "Enemy":
-                Debug.Log("BURN");
+                other.GetComponent<EnemyTree>().TakeDamage(2, "Flame");
                 break;
         }
     }
