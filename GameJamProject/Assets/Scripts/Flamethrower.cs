@@ -71,7 +71,7 @@ public class Flamethrower : MonoBehaviour
                 bc.enabled = true;
             }
         }
-
+        
         // Otherwise, start co-routine which disables them after a short delay to account for lingering flames.
         else if (GetComponent<BoxCollider>().enabled)
         {

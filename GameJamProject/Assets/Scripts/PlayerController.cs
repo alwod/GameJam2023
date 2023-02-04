@@ -5,18 +5,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public int maximumHealth = 100;
+
+    [SerializeField] private int Health;
     [SerializeField]
     private float movementSpeed;
 
     private Rigidbody _rigidbody;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
+    private bool damageCooldown;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        Health = maximumHealth;
+        damageCooldown = false;
         // _rigidbody.isKinematic = true;
     }
 
@@ -62,5 +69,33 @@ public class PlayerController : MonoBehaviour
     {
         transform.LookAt(Camera.main.transform);
         transform.Rotate(0, 180, 0);
+    }
+    
+    IEnumerator DisableDamage()
+    {
+        // suspend execution for 5 seconds
+        yield return new WaitForSeconds(1);
+        damageCooldown = false;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy") && !damageCooldown)
+        {
+            Debug.Log("Ouch, I'm being hurt.");
+            Health -= 10;
+            damageCooldown = true;
+            StartCoroutine(DisableDamage());
+        }
+
+        if (Health <= 0)
+        {
+            OnDefeat();
+        }
+    }
+
+    void OnDefeat()
+    {
+        Debug.Log("Game over mate, you lost");
+        gameObject.SetActive(false);
     }
 }
