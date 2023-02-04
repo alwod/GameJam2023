@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyTree : MonoBehaviour
 {
@@ -40,12 +41,16 @@ public class EnemyTree : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate ()
     {
+        /*
         Vector3 direction = (Player.transform.position - transform.position).normalized;
 
-        // lock rotation on x axis to 45 degree angles
-        transform.rotation = Quaternion.Euler(0, Mathf.Round(transform.rotation.eulerAngles.z / 45) * 45, 0);
+        // lock rotation on x axis to 45 degree angle multipliers only
+        transform.rotation = Quaternion.Euler(45 * Mathf.Round(transform.rotation.eulerAngles.x / 45), transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
         Rigidbody.MovePosition(transform.position + direction * speed * Time.deltaTime);
+        */
+
+        GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
     }
 
     void Update()
@@ -99,7 +104,6 @@ public class EnemyTree : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.LookAt(Camera.main.transform);
-        transform.Rotate(0, 180, 0);
+        transform.rotation = Camera.main.transform.rotation;
     }
 }
