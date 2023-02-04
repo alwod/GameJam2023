@@ -117,7 +117,7 @@ public class EnemyTree : MonoBehaviour
         {
             // Incoming fire attacks increase the tick count, making the enemy take damage over time.
             case "Flame":
-                FlameTickCount+= 2;
+                FlameTickCount+= 5;
                 break;
         }
 

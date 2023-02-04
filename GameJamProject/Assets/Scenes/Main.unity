@@ -1185,6 +1185,7 @@ MonoBehaviour:
   spawnCooldown: 0
   end: 0
   waveCounterUIObject: {fileID: 1241342522}
+  damageNumbers: {fileID: 1217925383847638058, guid: 98c6d09afad86af45837d1e02b991817, type: 3}
 --- !u!4 &1743378971
 Transform:
   m_ObjectHideFlags: 0
