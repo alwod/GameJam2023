@@ -72,6 +72,7 @@ public class EnemyTree : MonoBehaviour
                 FlameTickCount -= FlameTickCount / 4;
             }
 
+            if (Health <= 0) { gameObject.SetActive(false); }
             flameTickDamageDelay = 1f;
             Debug.Log("ON FIRE: " + Health + "\nTICKS REMAINING:" + FlameTickCount);
         }

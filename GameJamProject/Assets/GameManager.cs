@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private byte poolPointer;
 
-    private void Start()
+    private void Awake()
     {
         poolPointer = 0;
 
@@ -38,5 +39,21 @@ public class GameManager : MonoBehaviour
                 poolPointer = 0;
             }
         }
+    }
+
+    /// <summary>
+    /// Return all active enemies in the pool.
+    /// </summary>
+    public GameObject[] GetActiveEnemies()
+    {
+        return enemyPool.Where(enemy => enemy.gameObject.activeInHierarchy).ToArray();
+    }
+
+    /// <summary>
+    /// Returns all enemies in the pool.
+    /// </summary>
+    public GameObject[] GetEnemies()
+    {
+        return enemyPool;
     }
 }
