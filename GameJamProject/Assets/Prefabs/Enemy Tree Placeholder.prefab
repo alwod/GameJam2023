@@ -309,8 +309,8 @@ GameObject:
   - component: {fileID: 1241204287}
   - component: {fileID: 5210697977382438123}
   m_Layer: 0
-  m_Name: Enemy Tree
-  m_TagString: Enemy
+  m_Name: Enemy Tree Placeholder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
