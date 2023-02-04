@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     private float movementSpeed;
 
     private Rigidbody _rigidbody;
+    private SpriteRenderer _spriteRenderer;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody.isKinematic = true;
     }
 
@@ -38,12 +40,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             movement.x += -movementSpeed;
+            _spriteRenderer.flipX = true;
         }
         
         // Right
         if (Input.GetKey(KeyCode.D))
         {
             movement.x += movementSpeed;
+            _spriteRenderer.flipX = false;
         }
 
         transform.position += movement * speed;
