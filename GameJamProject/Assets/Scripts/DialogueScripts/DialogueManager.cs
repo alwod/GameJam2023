@@ -9,6 +9,26 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _sentences = new Queue<string>();
+    }
+
+    public void StartDialogue(Dialogue dialogue)
+    {
+        
+    }
+
+    public void DisplayNextSentence()
+    {
+        
+    }
+
+    // IEnumerator TypeSentence(string sentence)
+    // {
+    //     
+    // }
+
+    private void EndDialogue()
+    {
         
     }
 }
