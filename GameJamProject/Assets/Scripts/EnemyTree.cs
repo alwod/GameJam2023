@@ -15,11 +15,9 @@ public class EnemyTree : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update ()
+    void FixedUpdate ()
     {
-        Vector3 lookAt = Player.transform.position;
-        lookAt.y = transform.position.y;
-        transform.LookAt(lookAt);
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        Vector3 direction = (Player.transform.position - transform.position).normalized;
+        Rigidbody.MovePosition(transform.position + direction * speed * Time.deltaTime);
     }
 }
