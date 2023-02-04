@@ -11,6 +11,7 @@ public class EnemyTree : MonoBehaviour
     public int maxHealth = 500;
     private PlayerController Player;
     private Rigidbody Rigidbody;
+    private GameManager GameManager;
 
     public int Health // Enemy's current health.
     {
@@ -31,6 +32,7 @@ public class EnemyTree : MonoBehaviour
     {
         Player = GameObject.FindObjectOfType<PlayerController> ();
         Rigidbody = GetComponent<Rigidbody>();
+        GameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     void OnEnable()
@@ -115,5 +117,6 @@ public class EnemyTree : MonoBehaviour
     {
         Debug.Log("Oh no. I am dying. Help.");
         gameObject.SetActive(false);
+        GameManager.defeatedEnemies++;
     }
 }
