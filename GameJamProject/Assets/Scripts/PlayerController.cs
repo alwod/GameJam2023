@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
         // _rigidbody.isKinematic = true;
     }
 
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour
             movement.x += movementSpeed;
             _spriteRenderer.flipX = false;
         }
+
+        if (movement == Vector3.zero) _animator.SetBool("isMoving",false);
+        else _animator.SetBool("isMoving",true);
 
         _rigidbody.MovePosition(transform.position + movement * speed);
     }
