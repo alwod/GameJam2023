@@ -132,8 +132,8 @@ public class EnemyTree : MonoBehaviour
                 break;
         }
 
-        GameObject.Find("_GAME MANAGER").GetComponent<GameManager>()
-            .InstantiateDamageNumbers(damage, gameObject);
+        // GameObject.Find("_GAME MANAGER").GetComponent<GameManager>()
+        //     .InstantiateDamageNumbers(damage, gameObject);
 
         Debug.Log(Health);
 
