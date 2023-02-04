@@ -96,7 +96,6 @@ public class Flamethrower : MonoBehaviour
 
     private void OnParticleTrigger()
     {
-        Debug.Log("Pog!");
         List<ParticleSystem.Particle> enteredParts = new List<ParticleSystem.Particle>();
 
         int enterNo = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enteredParts);
@@ -110,7 +109,8 @@ public class Flamethrower : MonoBehaviour
                 Collider col = enemy.GetComponent<Collider>();
                 if (col.bounds.Contains(part.position))
                 {
-                    enemy.GetComponent<EnemyTree>().TakeDamage(2, "Flame");
+                    enemy.GetComponent<EnemyTree>().TakeDamage(1, "Flame");
+                    return;
                 }
             }
         }
