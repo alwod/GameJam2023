@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public class EnemyTree : MonoBehaviour
 {
@@ -70,16 +72,23 @@ public class EnemyTree : MonoBehaviour
         // If enemy is still on fire and the damage delay has ended...
         if (FlameTickCount > 0 && flameTickDamageDelay < 0f)
         {
+            var damageUI = GameObject.Instantiate(GameManager.GetDMGSprite(), gameObject.transform);
+            damageUI.transform.Translate(new Vector3(Random.Range(-3f, 3f), Random.Range(0, 3f), Random.Range(-3f, 3f)));
             // Reduce health and stored ticks by 1/4 stored ticks (or 1 when at <5 ticks), reset the delay timer.
             if (FlameTickCount <= 5)
             {
                 Health--;
                 FlameTickCount--;
+                damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText("1!");
+                damageUI.GetComponent<Rigidbody>().AddForce(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f), ForceMode.Impulse);
             }
             else
             {
+                damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText((FlameTickCount / 4).ToString() + "!");
+                damageUI.GetComponent<Rigidbody>().AddForce(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f), ForceMode.Impulse);
                 Health -= FlameTickCount / 4;
                 FlameTickCount -= FlameTickCount / 4;
+
             }
 
             if (Health <= 0) { gameObject.SetActive(false); }
@@ -112,8 +121,9 @@ public class EnemyTree : MonoBehaviour
                 break;
         }
 
-        GameObject.Find("_GAME MANAGER").GetComponent<GameManager>()
-            .InstantiateDamageNumbers(damage, gameObject);
+        var damageUI = GameObject.Instantiate(GameManager.GetDMGSprite(), gameObject.transform);
+        damageUI.transform.Translate(new Vector3(Random.Range(-3f, 3f), Random.Range(0, 3f), Random.Range(-3f, 3f)));
+        damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
 
         Debug.Log(Health);
 

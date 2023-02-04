@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     
     public GameObject waveCounterUIObject;
     private TextMeshProUGUI waveCounterUI;
+
+    [SerializeField] private GameObject damageNumbers;
     
 
     private byte poolPointer;
@@ -122,5 +124,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] GetEnemies()
     {
         return enemyPool;
+    }
+
+    public GameObject GetDMGSprite()
+    {
+        return damageNumbers;
     }
 }
