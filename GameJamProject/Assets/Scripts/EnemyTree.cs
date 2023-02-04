@@ -11,6 +11,9 @@ public class EnemyTree : MonoBehaviour
     public int maxHealth = 5000;
     private PlayerController Player;
     private Rigidbody Rigidbody;
+    private GameManager GameManager;
+    private NavMeshAgent meshAgent;
+    private SpriteRenderer SpriteRenderer;
 
     public int Health // Enemy's current health.
     {
@@ -31,6 +34,9 @@ public class EnemyTree : MonoBehaviour
     {
         Player = GameObject.FindObjectOfType<PlayerController> ();
         Rigidbody = GetComponent<Rigidbody>();
+        GameManager = GameObject.FindObjectOfType<GameManager>();
+        meshAgent = GetComponent<NavMeshAgent>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
@@ -52,7 +58,11 @@ public class EnemyTree : MonoBehaviour
         Rigidbody.MovePosition(transform.position + direction * speed * Time.deltaTime);
         */
 
-        GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
+        Vector3 playerPosition = Player.transform.position;
+        meshAgent.SetDestination(playerPosition);
+        Vector3 playerDirection = (playerPosition - transform.position).normalized;
+        if (playerDirection.x < 0) SpriteRenderer.flipX = true;
+        else SpriteRenderer.flipX = false;
     }
 
     void Update()
@@ -118,5 +128,6 @@ public class EnemyTree : MonoBehaviour
     {
         Debug.Log("Oh no. I am dying. Help.");
         gameObject.SetActive(false);
+        GameManager.defeatedEnemies++;
     }
 }
