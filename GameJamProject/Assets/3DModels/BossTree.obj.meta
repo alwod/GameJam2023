@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Leaves
+    second: {fileID: 2100000, guid: 086156113ac9fcc409345f16790736da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material
     second: {fileID: 2100000, guid: 507d510a124e2f143b707fdf548220bc, type: 2}
   materials:
