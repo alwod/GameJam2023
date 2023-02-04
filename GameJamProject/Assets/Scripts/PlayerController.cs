@@ -52,4 +52,10 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody.MovePosition(transform.position + movement * speed);
     }
+
+    void LateUpdate()
+    {
+        transform.LookAt(Camera.main.transform);
+        transform.Rotate(0, 180, 0);
+    }
 }
