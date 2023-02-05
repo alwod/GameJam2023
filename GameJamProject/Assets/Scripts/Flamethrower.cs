@@ -62,10 +62,9 @@ public class Flamethrower : MonoBehaviour
         isFiring = Input.GetKey(KeyCode.Space); // If using primary fire key, set firing to true, otherwise false. 
 
         // Shoot flamethrower if firing.
-        if (isFiring) 
-        { 
-            // Play flamethrower sound effect
-            StartCoroutine(audioManager.GetComponent<AudioManager>().Play("Flamethrower"));
+        if (isFiring)
+        {
+            audioManager.GetComponent<AudioManager>().Play("Flamethrower");
             ps.Play();
             fireTime += Time.deltaTime;
         }
@@ -74,7 +73,7 @@ public class Flamethrower : MonoBehaviour
             ps.Stop();
             fireTime = 0f;
             // Stop flamethrower sound effect
-            //audioManager.GetComponent<AudioManager>().Stop("Flamethrower");
+            audioManager.GetComponent<AudioManager>().Stop("Flamethrower");
         }
     }
 

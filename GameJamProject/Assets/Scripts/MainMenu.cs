@@ -9,13 +9,13 @@ public class MainMenu : MonoBehaviour
     {
         // Play flamethrower sound effect
         FindObjectOfType<AudioManager>().Play("ButtonClick");
-        //SceneManager.LoadScene("Introduction");
+        SceneManager.LoadScene("Introduction");
     }
 
     public void ExitGame()
     {
         // Play flamethrower sound effect
         FindObjectOfType<AudioManager>().Play("ButtonClick");
-        //Application.Quit();
+        Application.Quit();
     }
 }
