@@ -1,4 +1,8 @@
 ﻿Stranger%Hello there!
-You%... hello?
-The Witch%I am the witch! What's your name?
-Ash%... it's Ash.
+???%... hello?
+The Witch%I am the witch in charge of this forest. To what do I owe the pleasure?
+???%... I'm here to look for my roots.
+The Witch%I see. But the only thing in this forest are The Haunted?
+???%I know. My family is among them.
+The Witch%...I see. And what do you plan to do?
+???%...Burn them.
