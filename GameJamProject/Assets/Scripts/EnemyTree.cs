@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using Image = UnityEngine.UI.Image;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class EnemyTree : MonoBehaviour
 {
     public int speed = 5;
-    public int maxHealth = 50000;
+    public int maxHealth;
     public GameObject fire;
     private PlayerController Player;
     private Rigidbody Rigidbody;
@@ -18,6 +20,9 @@ public class EnemyTree : MonoBehaviour
     private NavMeshAgent meshAgent;
     private SpriteRenderer SpriteRenderer;
     private bool onFire;
+
+    private UnityEngine.UI.Image HPBarOut;
+    private UnityEngine.UI.Image HPBarBorder;
 
     public int Health // Enemy's current health.
     {
@@ -42,13 +47,17 @@ public class EnemyTree : MonoBehaviour
         meshAgent = GetComponent<NavMeshAgent>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
         onFire = false;
+
+        HPBarOut = gameObject.transform.GetChild(1).GetChild(1).GetComponent<Image>();
+        HPBarBorder = gameObject.transform.GetChild(1).GetChild(0).GetComponent<Image>();
+
     }
 
     void OnEnable()
     {
         Health = maxHealth;
         FlameTickCount = 0;
-        flameTickDamageDelay = 0;
+        flameTickDamageDelay = 0;   
     }
 
     // Update is called once per frame
@@ -87,10 +96,12 @@ public class EnemyTree : MonoBehaviour
             }
             else
             {
-                damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText((FlameTickCount / 4).ToString() + "!");
+                int damage = (int) MathF.Floor(FlameTickCount / 3f);
+                Health -= damage;
+                FlameTickCount -= damage;
+
+                damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage + "!");
                 damageUI.GetComponent<Rigidbody>().AddForce(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f), ForceMode.Impulse);
-                Health -= FlameTickCount / 3;
-                FlameTickCount -= FlameTickCount / 3;
 
             }
 
@@ -112,6 +123,13 @@ public class EnemyTree : MonoBehaviour
 
 
         flameTickDamageDelay -= Time.deltaTime;
+
+        HPBarOut.fillAmount = ((float)Health / (float)maxHealth);
+
+        HPBarOut.gameObject.transform.rotation = Camera.main.transform.rotation;
+        HPBarBorder.gameObject.transform.position = transform.position + new Vector3(0, 3f, 0);
+        HPBarOut.gameObject.transform.position = transform.position + new Vector3(0, 3f, 0.1f);
+
     }
 
     /// <summary>
