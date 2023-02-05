@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   maxHealth: 500
-  fire: {fileID: 0}
+  fire: {fileID: 594312188360695550}
 --- !u!54 &1241335491813363695
 Rigidbody:
   m_ObjectHideFlags: 0
