@@ -38,7 +38,8 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        sounds[0].source.Play();
+        sounds[0].source.Pause();
     }
 
     public void Play(string name)
