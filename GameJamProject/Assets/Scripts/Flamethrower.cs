@@ -64,6 +64,10 @@ public class Flamethrower : MonoBehaviour
         { 
             ps.Play();
             fireTime += Time.deltaTime;
+            
+            // Play flamethrower sound effect
+            FindObjectOfType<AudioManager>().Play("Flamethrower");
+            
         }
         else
         {
