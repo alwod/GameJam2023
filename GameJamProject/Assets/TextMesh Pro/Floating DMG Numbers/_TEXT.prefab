@@ -129,7 +129,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &8098792918892033845
 Animator:
@@ -353,6 +353,10 @@ PrefabInstance:
     - target: {fileID: 4987453137113424362, guid: e4187b60bd35680408f4a2214d3c6ad3, type: 3}
       propertyPath: m_Name
       value: DMG Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018704713274781431, guid: e4187b60bd35680408f4a2214d3c6ad3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4187b60bd35680408f4a2214d3c6ad3, type: 3}
