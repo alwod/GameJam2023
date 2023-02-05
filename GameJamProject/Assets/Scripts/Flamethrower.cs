@@ -25,7 +25,6 @@ public class Flamethrower : MonoBehaviour
     {
         emitterPos = transform.position;
         ps = GetComponent<ParticleSystem>();
-        flameMaxRange = 15f;
 
         _spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
 
