@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public int maximumHealth = 100;
     public GameObject currentHealthObject;
 
-    [SerializeField] private int Health;
+    public int Health;
+    public int maximumHealth = 100;
     [SerializeField]
     private float movementSpeed;
 
@@ -110,7 +109,7 @@ public class PlayerController : MonoBehaviour
         _gameManager.endGame();
     }
 
-    void setHealth()
+    public void setHealth()
     {
         currentHealthUI.SetText("Health: " + Health + "/" + maximumHealth);
     }

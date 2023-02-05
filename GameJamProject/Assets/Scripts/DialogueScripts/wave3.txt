@@ -1,0 +1,4 @@
+﻿The Witch%Are you sure you wanna do that?
+Ash%Is there anything else you can do to turn a Haunted back?
+The Witch%No.
+Ash%Thought so.

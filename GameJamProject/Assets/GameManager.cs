@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public int defeatedEnemies = 0;
     public GameObject GameOverScreen;
+    public int initialEnemyNumber = 5;
+    public int additionalEnemiesPerWave = 2;
     [SerializeField] private List<GameObject> Enemies;
     [SerializeField] private int waveNumber = 1;
     [SerializeField] private bool spawnCooldown = false;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     
     public GameObject waveCounterUIObject;
     private TextMeshProUGUI waveCounterUI;
+    private PlayerController Player;
 
     [SerializeField] private GameObject damageNumbers;
     
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
         poolPointer = 0;
         defeatedEnemies = 0;
         waveCounterUI = waveCounterUIObject.GetComponent<TextMeshProUGUI>();
+        Player = GameObject.FindObjectOfType<PlayerController>();
 
         enemyPool = new GameObject[128]; // 128 stored enemies
 
@@ -80,13 +84,13 @@ public class GameManager : MonoBehaviour
     {
         int waveLimit;
         int spawnedMobs;
-        while (!end)
+        while (waveNumber < 7)
         {
             canvas.tag = "Untagged";
             Debug.Log("Starting new wave!");
             string waveMessage = "Current wave: " + waveNumber;
             waveCounterUI.SetText(waveMessage);
-            waveLimit = 1 * waveNumber;
+            waveLimit = initialEnemyNumber + (waveNumber-1) * additionalEnemiesPerWave;
             spawnedMobs = 0;
             while (spawnedMobs < waveLimit)
             {
@@ -117,18 +121,23 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(2);
             }
 
-            witches[waveNumber].gameObject.SetActive(true);
+            witches[waveNumber-1].gameObject.SetActive(true);
 
             while (!canvas.CompareTag("Finish"))
             {
                 yield return new WaitForSeconds(2);
             }
             
-            witches[waveNumber].gameObject.SetActive(false);
+            witches[waveNumber-1].gameObject.SetActive(false);
 
             
             waveNumber++;
+            defeatedEnemies = 0;
+            Player.Health = Player.maximumHealth;
+            Player.setHealth();
         }
+
+        SceneManager.LoadScene("StartScreen");
     }
 
     /// <summary>

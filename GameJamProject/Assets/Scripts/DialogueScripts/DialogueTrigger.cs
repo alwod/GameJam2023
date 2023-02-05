@@ -11,6 +11,7 @@ public class DialogueTrigger : MonoBehaviour
     public GameObject player;
     
     private float _delayTime = 0.0f;
+    private bool hasStarted = false;
 
     private void Update()
     {
@@ -19,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
 
         _delayTime = _delayTime - Time.deltaTime;
         
-        if (distance <= 5 && Input.GetKey(KeyCode.Return) && _delayTime <= 0)
+        if (distance <= 5 && Input.GetKey(KeyCode.Return) && _delayTime <= 0 && !hasStarted)
         {
             _delayTime = 0.2f;
             TriggerDialogue();
@@ -28,6 +29,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        hasStarted = true;
         StartCoroutine(FindObjectOfType<DialogueManager>().StartDialogue(dialogue));
     }
 }
