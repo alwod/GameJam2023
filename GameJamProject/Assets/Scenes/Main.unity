@@ -1817,6 +1817,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8243181671119158902, guid: b9a017c78259e6a47bab045e59684ee1, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243181671119158902, guid: b9a017c78259e6a47bab045e59684ee1, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243181671119158902, guid: b9a017c78259e6a47bab045e59684ee1, type: 3}
+      propertyPath: NoiseModule.positionAmount.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243181671119158902, guid: b9a017c78259e6a47bab045e59684ee1, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243181671119158902, guid: b9a017c78259e6a47bab045e59684ee1, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243181671119158902, guid: b9a017c78259e6a47bab045e59684ee1, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243181671119158902, guid: b9a017c78259e6a47bab045e59684ee1, type: 3}
       propertyPath: VelocityModule.speedModifier.scalar
       value: 1
       objectReference: {fileID: 0}
