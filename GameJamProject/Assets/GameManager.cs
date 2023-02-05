@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool spawnCooldown = false;
     [SerializeField] private bool end = false;
 
+    public GameObject[] witches;
+    public GameObject canvas;
+
 
 
     private GameObject[] enemyPool;
@@ -42,6 +45,11 @@ public class GameManager : MonoBehaviour
             // Each enemy within the pool is randomly chosen from the list of provided enemies.
             enemyPool[i] = Instantiate(Enemies[Random.Range(0, Enemies.Count)], Vector3.zero, Quaternion.identity);
             enemyPool[i].SetActive(false);
+        }
+        
+        foreach (var witch in witches)
+        {
+            witch.gameObject.SetActive(false);
         }
 
         StartCoroutine(WaveManager());
@@ -74,10 +82,11 @@ public class GameManager : MonoBehaviour
         int spawnedMobs;
         while (!end)
         {
+            canvas.tag = "Untagged";
             Debug.Log("Starting new wave!");
             string waveMessage = "Current wave: " + waveNumber;
             waveCounterUI.SetText(waveMessage);
-            waveLimit = 5 * waveNumber;
+            waveLimit = 1 * waveNumber;
             spawnedMobs = 0;
             while (spawnedMobs < waveLimit)
             {
@@ -108,6 +117,16 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(2);
             }
 
+            witches[waveNumber].gameObject.SetActive(true);
+
+            while (!canvas.CompareTag("Finish"))
+            {
+                yield return new WaitForSeconds(2);
+            }
+            
+            witches[waveNumber].gameObject.SetActive(false);
+
+            
             waveNumber++;
         }
     }
