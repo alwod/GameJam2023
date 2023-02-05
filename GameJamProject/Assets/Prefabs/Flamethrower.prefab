@@ -662,7 +662,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 6
+    type: 19
     angle: 0
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -750,7 +750,7 @@ ParticleSystem:
     randomPositionAmount: 1
     radius:
       value: 0.0001
-      mode: 0
+      mode: 1
       spread: 0
       speed:
         serializedVersion: 2
@@ -807,8 +807,8 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 0
-      mode: 1
-      spread: 1
+      mode: 0
+      spread: 0
       speed:
         serializedVersion: 2
         minMaxState: 0

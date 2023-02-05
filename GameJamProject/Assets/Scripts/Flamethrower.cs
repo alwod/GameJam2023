@@ -42,20 +42,19 @@ public class Flamethrower : MonoBehaviour
         if (_spriteRenderer.flipX)
         {
             transform.rotation = Quaternion.Euler(0, -90, 0);
-            transform.position = new Vector3(-2, 1, 0) + transform.parent.position;
+            transform.position = new Vector3(-2f, 1.5f, 0) + transform.parent.position;
         }
         else
         {
             transform.rotation = Quaternion.Euler(0, 90, 0);
-            transform.position = new Vector3(2, 1, 0) + transform.parent.position;
+            transform.position = new Vector3(2f, 1.5f, 0) + transform.parent.position;
         }
 
         ParticleSystem.Particle[] partSystem = new ParticleSystem.Particle[ps.particleCount]; // Get array of particles within the particle system.
         int numParticlesAlive = ps.GetParticles(partSystem);  // Get number of currently active particles.
-        
-        ParticleSystem.Particle[] validParticles = GetInRangeParticles(partSystem);
 
-        ps.SetParticles(validParticles, validParticles.Length); // Set particle system to use particles in arrays, aka omit particles that were outside the range.s
+        // Set particle system start speed to be between 8 and 12.
+        
 
         isFiring = Input.GetKey(KeyCode.Space); // If using primary fire key, set firing to true, otherwise false. 
 
@@ -70,29 +69,21 @@ public class Flamethrower : MonoBehaviour
             ps.Stop();
             fireTime = 0f;
         }
+
+        if (fireTime > 0)
+        {
+            var velocity = ps.velocityOverLifetime;
+            // get parent's transform direction this frame.
+            var direction = transform.parent.transform.forward;
+            // scale flamethrower with direction
+            velocity.xMultiplier = direction.x * 10;
+            velocity.yMultiplier = direction.y * 10;
+            velocity.zMultiplier = direction.z * 10;
+
+
+        }
     }
 
-    /// <summary>
-    /// For each active particle in the flamethrower, check if it's exceeded the flamethrower's max range. Exclude out of range particles.
-    /// </summary>
-    /// <param name="partSystem">Particle system that controls the flamethrower particles.</param>
-    /// <returns>Array of particles within the range threshold.</returns>
-    private ParticleSystem.Particle[] GetInRangeParticles(ParticleSystem.Particle[] partSystem)
-    {
-        List<ParticleSystem.Particle> validParticles = new List<ParticleSystem.Particle>();
-        
-        // For each particle in the array...
-        for (int i = 0; i < partSystem.Length; i++)
-        {
-            // If the particle is within range, add it to the array.
-            if (Vector3.Distance(emitterPos, partSystem[i].position) < flameMaxRange)
-            {
-                validParticles.Add(partSystem[i]);
-            }
-        }
-        return validParticles.ToArray();
-    }
-    
 
     private void OnParticleTrigger()
     {
