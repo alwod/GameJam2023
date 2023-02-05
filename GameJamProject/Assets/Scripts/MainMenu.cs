@@ -7,11 +7,15 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Introduction");
+        // Play flamethrower sound effect
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
+        //SceneManager.LoadScene("Introduction");
     }
 
     public void ExitGame()
     {
-        Application.Quit();
+        // Play flamethrower sound effect
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
+        //Application.Quit();
     }
 }

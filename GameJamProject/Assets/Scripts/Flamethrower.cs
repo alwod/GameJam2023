@@ -18,6 +18,8 @@ public class Flamethrower : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer; // Reference to player sprite to rotate flames when player rotates.
 
+    public GameObject audioManager;
+
 
     private void Start()
     {
@@ -62,17 +64,17 @@ public class Flamethrower : MonoBehaviour
         // Shoot flamethrower if firing.
         if (isFiring) 
         { 
+            // Play flamethrower sound effect
+            StartCoroutine(audioManager.GetComponent<AudioManager>().Play("Flamethrower"));
             ps.Play();
             fireTime += Time.deltaTime;
-            
-            // Play flamethrower sound effect
-            FindObjectOfType<AudioManager>().Play("Flamethrower");
-            
         }
         else
         {
             ps.Stop();
             fireTime = 0f;
+            // Stop flamethrower sound effect
+            //audioManager.GetComponent<AudioManager>().Stop("Flamethrower");
         }
     }
 

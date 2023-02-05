@@ -41,7 +41,19 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void Play(string name)
+    public IEnumerator Play(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("SOUND ERROR:" + name + " NOT FOUND");
+            yield return null;
+        }
+        s.source.Play();
+        yield return null;
+    }
+
+    public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -49,6 +61,6 @@ public class AudioManager : MonoBehaviour
             Debug.Log("SOUND ERROR:" + name + " NOT FOUND");
             return;
         }
-        s.source.Play();
+        s.source.Stop();
     }
 }
