@@ -25,7 +25,6 @@ public class Flamethrower : MonoBehaviour
     {
         emitterPos = transform.position;
         ps = GetComponent<ParticleSystem>();
-        flameMaxRange = 15f;
 
         _spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
 
@@ -63,7 +62,6 @@ public class Flamethrower : MonoBehaviour
         // Shoot flamethrower if firing.
         if (isFiring)
         {
-            audioManager.GetComponent<AudioManager>().Play("Flamethrower");
             ps.Play();
             fireTime += Time.deltaTime;
         }
@@ -72,7 +70,12 @@ public class Flamethrower : MonoBehaviour
             ps.Stop();
             fireTime = 0f;
             // Stop flamethrower sound effect
-            audioManager.GetComponent<AudioManager>().Stop("Flamethrower");
+            audioManager.GetComponent<AudioManager>().sounds[0].source.Pause();
+        }
+
+        if (isFiring && !audioManager.GetComponent<AudioManager>().sounds[0].source.isPlaying)
+        {
+            audioManager.GetComponent<AudioManager>().sounds[0].source.UnPause();
         }
 
         if (fireTime > 0)
