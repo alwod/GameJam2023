@@ -54,11 +54,11 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2049640007970415488, guid: 377eae1b68700e44b8bb375351192acd, type: 3}
+      objectReference: {fileID: -1580535799172915004, guid: 5194d7c08d1ae704bb6502fdb94f9217, type: 3}
     - target: {fileID: -7635826562936255635, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: 086156113ac9fcc409345f16790736da, type: 2}
+      objectReference: {fileID: 2100000, guid: c29b70c9610ef5d41b16324fb0c50c52, type: 2}
     - target: {fileID: 919132149155446097, guid: 764fe8ed0d5065b4695ddc6a72379169, type: 3}
       propertyPath: m_Name
       value: Normal Tree
