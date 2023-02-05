@@ -1,17 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public class EnemyTree : MonoBehaviour
 {
     public int speed = 5;
     public int maxHealth = 5000;
     public GameObject fire;
-    
-    
     private PlayerController Player;
     private Rigidbody Rigidbody;
     private GameManager GameManager;
@@ -69,33 +69,36 @@ public class EnemyTree : MonoBehaviour
         if (playerDirection.x < 0) SpriteRenderer.flipX = true;
         else SpriteRenderer.flipX = false;
     }
+
     void Update()
     {
         // If enemy is still on fire and the damage delay has ended...
         if (FlameTickCount > 0 && flameTickDamageDelay < 0f)
         {
+            var damageUI = GameObject.Instantiate(GameManager.GetDMGSprite(), gameObject.transform);
+            damageUI.transform.Translate(new Vector3(Random.Range(-3f, 3f), Random.Range(0, 3f), Random.Range(-3f, 3f)));
             // Reduce health and stored ticks by 1/4 stored ticks (or 1 when at <5 ticks), reset the delay timer.
             if (FlameTickCount <= 5)
             {
                 Health--;
                 FlameTickCount--;
+                damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText("1!");
+                damageUI.GetComponent<Rigidbody>().AddForce(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f), ForceMode.Impulse);
             }
             else
             {
+                damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText((FlameTickCount / 4).ToString() + "!");
+                damageUI.GetComponent<Rigidbody>().AddForce(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f), ForceMode.Impulse);
                 Health -= FlameTickCount / 4;
                 FlameTickCount -= FlameTickCount / 4;
+
             }
 
-            if (Health <= 0)
-            {
-                OnDeath();
-            }
-
+            if (Health <= 0) { OnDeath(); }
             flameTickDamageDelay = 1f;
             Debug.Log("ON FIRE: " + Health + "\nTICKS REMAINING:" + FlameTickCount);
         }
 
-        
         //check if there are fire ticks. If there are, turn on flame animation
         if (FlameTickCount > 0) onFire = true;
         else onFire = false;
@@ -105,6 +108,7 @@ public class EnemyTree : MonoBehaviour
             if(!fire.gameObject.activeSelf) fire.gameObject.SetActive(true);
         }
         else if(fire.gameObject.activeSelf) fire.gameObject.SetActive(false);
+
 
 
         flameTickDamageDelay -= Time.deltaTime;
@@ -128,12 +132,13 @@ public class EnemyTree : MonoBehaviour
         {
             // Incoming fire attacks increase the tick count, making the enemy take damage over time.
             case "Flame":
-                FlameTickCount+= 2;
+                FlameTickCount+= 5;
                 break;
         }
 
-        // GameObject.Find("_GAME MANAGER").GetComponent<GameManager>()
-        //     .InstantiateDamageNumbers(damage, gameObject);
+        var damageUI = GameObject.Instantiate(GameManager.GetDMGSprite(), gameObject.transform);
+        damageUI.transform.Translate(new Vector3(Random.Range(-3f, 3f), Random.Range(0, 3f), Random.Range(-3f, 3f)));
+        damageUI.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
 
         Debug.Log(Health);
 

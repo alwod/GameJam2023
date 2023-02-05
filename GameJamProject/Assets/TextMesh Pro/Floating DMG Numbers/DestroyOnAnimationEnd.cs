@@ -10,7 +10,7 @@ public class DestroyOnAnimationEnd : MonoBehaviour
     }
 
     public void DestroyDMGText()
-    {
-        Destroy(gameObject);
+    { 
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }
