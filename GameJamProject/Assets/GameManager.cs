@@ -4,12 +4,14 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     public int defeatedEnemies = 0;
+    public GameObject GameOverScreen;
     [SerializeField] private List<GameObject> Enemies;
     [SerializeField] private int waveNumber = 1;
     [SerializeField] private bool spawnCooldown = false;
@@ -130,4 +132,13 @@ public class GameManager : MonoBehaviour
     {
         return damageNumbers;
     }
+    
+    public void endGame(){
+        GameOverScreen.gameObject.SetActive(true);
+        StopAllCoroutines();
+    }
+
+    public void restartGame() { SceneManager.LoadScene("Main"); }
+
+    public void mainMenu() { SceneManager.LoadScene("StartScreen"); }
 }

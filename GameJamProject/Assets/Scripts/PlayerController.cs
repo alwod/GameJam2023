@@ -19,12 +19,14 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private bool damageCooldown;
     private TextMeshProUGUI currentHealthUI;
+    private GameManager _gameManager;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
         Health = maximumHealth;
         damageCooldown = false;
         currentHealthUI = currentHealthObject.GetComponent<TextMeshProUGUI>();
@@ -105,6 +107,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Game over mate, you lost");
         gameObject.SetActive(false);
+        _gameManager.endGame();
     }
 
     void setHealth()
